@@ -2,9 +2,7 @@
 title: API Kashpay
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
+  - java
   - php
 
 toc_footers:
@@ -41,46 +39,6 @@ HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma
   .header("Content-Type", "application/json")
   .body("{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}")
   .asString();
-```
-
-```ruby
-require "uri"
-require "json"
-require "net/http"
-
-url = URI("http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate")
-
-http = Net::HTTP.new(url.host, url.port);
-request = Net::HTTP::Post.new(url)
-request["Content-Type"] = "application/json"
-request.body = JSON.dump({
-  "entity": "com.cascade",
-  "password": "cascTest4333",
-  "user": "jim@cascadefintech.com"
-})
-
-response = http.request(request)
-puts response.read_body
-```
-
-```python
-import requests
-import json
-
-url = "http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"
-
-payload = json.dumps({
-  "entity": "com.cascade",
-  "password": "cascTest4333",
-  "user": "jim@cascadefintech.com"
-})
-headers = {
-  'Content-Type': 'application/json'
-}
-
-response = requests.request("POST", url, headers=headers, data=payload)
-
-print(response.text)
 ```
 
 ```php
@@ -142,39 +100,70 @@ user      | Correo electronico registrado.
 Recuerda — Las credenciales para este propósito se proporcionan a nivel de Entidad.
 </aside>
 
-## createOrder
+## Crear orden
 
 Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
 El envío de dinero nacional se realiza a través del operativo "1 - Transferencia Interbancaria SPEI", se puede visualizar en la pestaña Modelo.
 
 ```java
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate")
+HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/OKPay/createOrder")
+  .header("Authorization", "Basic YWRtaW46c2VjcmV0")
   .header("Content-Type", "application/json")
-  .body("{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}")
+  .body("{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n")
   .asString();
-```
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
 ```
 
 ```php
-cUnirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate")
-  .header("Content-Type", "application/json")
-  .body("{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}")
-  .asString();
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+    "alphanumericReference": "PROVV0011712091",
+    "amount": 250,
+    "beneficiaryAcount": 87459854,
+    "beneficiaryAcountSPEI": 87459854,
+    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryCity": "CDMX",
+    "beneficiaryName": "Florentino Eter",
+    "beneficiaryTypeAcount": "string",
+    "codeInstituteBank": "002",
+    "concept": "Deposito Maria",
+    "currency": 484,
+    "dataAccreditationBeneficiary": 99,
+    "dateTransaction": "030421",
+    "description": "prueba",
+    "email": "testrest@gmail.com",
+    "idBank": 4177,
+    "idEntity": 4177,
+    "numericReference": 43223123,
+    "observation": "test@gmail.com",
+    "orderingAccount": 111,
+    "orderingTypeAcount": "string",
+    "postalCode": 57800,
+    "referenceCreatedPayment": 811111112,
+    "rfc": "ROPL951201091",
+    "typeTransaction": 1
+  }',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer YWRtaW46c2VjcmV0',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
 
 ```
 
@@ -219,15 +208,15 @@ HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma
 
 `POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder`
 
-### URL Parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
-alphanumericReference | nd
+alphanumericReference | Referencia alfanumerica aleatoria
 amount | Monto de la transaccion
 beneficiaryAcount | Cuenta beneficiaria
 beneficiaryAddress1 | Direccion del beneficiario
-beneficiaryCity |CDMX
+beneficiaryCity |Ciudad del beneficiario
 beneficiaryName | Nombre del beneficiario
 beneficiaryTypeAcount | Tipo de la cuenta beneficiaria
 codeInstituteBank | Codigo de la institucion
@@ -246,40 +235,24 @@ typeTransaction | Tipo de la transaccion
 
 ## Delete a Specific Kitten
 
-```ruby
+```java
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 api.kittens.delete(2)
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
+```php
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
 let max = api.kittens.delete(2);
 ```
 
-> The above command returns JSON structured like this:
+> El codigo anterior devuelve un JSON estructurado así:
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+
 ```
 
 This endpoint deletes a specific kitten.
@@ -288,75 +261,170 @@ This endpoint deletes a specific kitten.
 
 `DELETE http://example.com/kittens/<ID>`
 
-### URL Parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+alphanumericReference | Referencia alfanumerica aleatoria
+amount | Monto de la transaccion
+beneficiaryAcount | Cuenta beneficiaria
+beneficiaryAddress1 | Direccion del beneficiario
+beneficiaryCity |Ciudad del beneficiario
 
 # API Emision
 
-## Get All Kittens
+## Iniciar sesion
+Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```java
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard ")
+  .header("Authorization", "Basic YWRtaW46c2VjcmV0")
+  .header("Content-Type", "application/json")
+  .body("\"loginRequest\": { \n   \"authentication\": { \n    \"user\": \"test@gmail.com\", \n    \"mail\": \"test@gmail.com\", \n    \"password\": \"**********\" \n   }, \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\", \n   \"dateTransaction\": \"20230113\", \n   \"hourTransaction\": \"134209\", \n }, \n \"device\": { \n   \"os\": \"Android\", \n   \"systemOperativeName\": \"Version Desconocida\", \n   \"systemOperativeVersion\": \"15\", \n   \"manufacturer\": \"Google\", \n   \"model\": \"Pixel 7 Pro\", \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\" \n }, \n \"appInfo\": { \n   \"nameApp\": \"eVolv\", \n   \"versionApp\": \"21.0.0\", \n   \"enviroment\": \"SANDBOX\", \n   \"versionConnector\": \"2.0.0\" \n } ")
+  .asString();
+
 ```
 
-```python
-import kittn
+```php
+$curl = curl_init();
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard ',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'"loginRequest": { 
+   "authentication": { 
+    "user": "test@gmail.com", 
+    "mail": "test@gmail.com", 
+    "password": "**********" 
+   }, 
+   "latitude": "19.6735912", 
+   "longitude": "-99.0711819", 
+   "dateTransaction": "20230113", 
+   "hourTransaction": "134209", 
+ }, 
+ "device": { 
+   "os": "Android", 
+   "systemOperativeName": "Version Desconocida", 
+   "systemOperativeVersion": "15", 
+   "manufacturer": "Google", 
+   "model": "Pixel 7 Pro", 
+   "latitude": "19.6735912", 
+   "longitude": "-99.0711819" 
+ }, 
+ "appInfo": { 
+   "nameApp": "eVolv", 
+   "versionApp": "21.0.0", 
+   "enviroment": "SANDBOX", 
+   "versionConnector": "2.0.0" 
+ } ',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Basic YWRtaW46c2VjcmV0',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+
 ```
 
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> El codigo anterior devuelve un JSON estructurado así:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "success": true,
+  "loginResponse": {
+    "cardNumber": "23473882130001",
+    "idUser": 128,
+    "idStatus": 1,
+    "alias": "23473882130001",
+    "dni": "9739347348",
+    "keyOnboard": "keyOnboard",
+    "pinDriver": "",
+    "clabe": "646180585000000001",
+    "telephone": "2347388213",
+    "fullName": "ALFREDO MEDINA REYES",
+    "catalogVersion": 5,
+    "email": "amedina@test.com",
+    "virtualAccount": "299873",
+    "idSucursal": "6506",
+    "state": "Durango",
+    "registrationDate": "2022-04-19",
+    "userApp": "",
+    "address": {
+      "street": "Lilas ",
+      "exteriorNumber": "34",
+      "postalCode": "73483",
+      "location": "Las Palmas",
+      "city": "Durango",
+      "state": "Durango"
+    },
+    "mobilePin": "86267",
+    "secundaryClabeAccount": "ND"
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+  "cardsResponse": {
+    "card": [
+      {
+        "acount": "299873",
+        "saldos": {
+          "availableConsumptions": "55.80",
+          "cardAvailableBalance": 1.5
+        },
+        "cardObFuscated": "491049******XXXX",
+        "dateVen": "2030-08",
+        "typeCard": "fisica",
+        "stateCard": "01",
+        "name": "ALFREDO MEDINA REYES",
+        "typeDocument": "INE",
+        "documentNumber": "9739347348",
+        "alias": "23473882130001",
+        "clabe": "646180585000000001"
+      }
+    ]
   }
-]
+}
 ```
 
 This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST (url)/aldbrn/internal/aw/login`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Description
+--------- | -----------
+user | Usuario
+mail | Correo electronico
+password | Clave asignada 
+latitude | Latitud de la ubicacion actual
+longitude | Longitud de la ubicacion actual 
+dateTransaction | Fecha 
+hourTransaction | Hora 
+os | Sistema operativo del dispositivo
+systemOperativeName | Nombre de la version del sistema operativo
+systemOperativeVersion | Numero de la version del sistema operativo
+manufacturer | Creado por o marca 
+model | Modelo del dispositivo
+latitude | Latitud de la ubicacion actual
+longitude | Longitud de la ubicacion actual 
+nameApp | Nombre de la aplicacion 
+versionApp | Numero de version de la app
+enviroment | Entorno - desarrollo o produccion 
+versionConnector | Numero de version del conector
+ 
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
