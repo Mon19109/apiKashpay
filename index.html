@@ -296,7 +296,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;php&quot;]">
+  <body class="index" data-languages="[&quot;java&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -306,9 +306,7 @@
     <div class="toc-wrapper">
       <img src="images/logo_kash-ecec35e0.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="java">java</a>
               <a href="#" data-language-name="php">php</a>
         </div>
         <div class="search">
@@ -326,7 +324,7 @@
                     <a href="#autenticacion" class="toc-h2 toc-link" data-title="Autenticacion">Autenticacion</a>
                   </li>
                   <li>
-                    <a href="#createorder" class="toc-h2 toc-link" data-title="createOrder">createOrder</a>
+                    <a href="#crear-orden" class="toc-h2 toc-link" data-title="Crear orden">Crear orden</a>
                   </li>
                   <li>
                     <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
@@ -337,7 +335,7 @@
             <a href="#api-emision" class="toc-h1 toc-link" data-title="API Emision">API Emision</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#iniciar-sesion" class="toc-h2 toc-link" data-title="Iniciar sesion">Iniciar sesion</a>
                   </li>
               </ul>
           </li>
@@ -365,40 +363,6 @@
   <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
-</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">"uri"</span>
-<span class="nb">require</span> <span class="s2">"json"</span>
-<span class="nb">require</span> <span class="s2">"net/http"</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"</span><span class="p">)</span>
-
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">);</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">[</span><span class="s2">"Content-Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"application/json"</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
-  <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"com.cascade"</span><span class="p">,</span>
-  <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"cascTest4333"</span><span class="p">,</span>
-  <span class="s2">"user"</span><span class="p">:</span> <span class="s2">"jim@cascadefintech.com"</span>
-<span class="p">})</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">json</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">"http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
-  <span class="s">"entity"</span><span class="p">:</span> <span class="s">"com.cascade"</span><span class="p">,</span>
-  <span class="s">"password"</span><span class="p">:</span> <span class="s">"cascTest4333"</span><span class="p">,</span>
-  <span class="s">"user"</span><span class="p">:</span> <span class="s">"jim@cascadefintech.com"</span>
-<span class="p">})</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
@@ -464,27 +428,64 @@
 <aside class="success">
 Recuerda — Las credenciales para este propósito se proporcionan a nivel de Entidad.
 </aside>
-<h2 id='createorder'>createOrder</h2>
+<h2 id='crear-orden'>Crear orden</h2>
 <p>Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
 El envío de dinero nacional se realiza a través del operativo &quot;1 - Transferencia Interbancaria SPEI&quot;, se puede visualizar en la pestaña Modelo.</p>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"</span><span class="o">)</span>
+<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-centauri.kashplataforma.com/OKPay/createOrder"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"Basic YWRtaW46c2VjcmV0"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
-</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder'</span><span class="p">,</span>
+  <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="no">CURLOPT_TIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="no">CURLOPT_FOLLOWLOCATION</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTP_VERSION</span> <span class="o">=&gt;</span> <span class="no">CURL_HTTP_VERSION_1_1</span><span class="p">,</span>
+  <span class="no">CURLOPT_CUSTOMREQUEST</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="no">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span><span class="s1">'{
+    "alphanumericReference": "PROVV0011712091",
+    "amount": 250,
+    "beneficiaryAcount": 87459854,
+    "beneficiaryAcountSPEI": 87459854,
+    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryCity": "CDMX",
+    "beneficiaryName": "Florentino Eter",
+    "beneficiaryTypeAcount": "string",
+    "codeInstituteBank": "002",
+    "concept": "Deposito Maria",
+    "currency": 484,
+    "dataAccreditationBeneficiary": 99,
+    "dateTransaction": "030421",
+    "description": "prueba",
+    "email": "testrest@gmail.com",
+    "idBank": 4177,
+    "idEntity": 4177,
+    "numericReference": 43223123,
+    "observation": "test@gmail.com",
+    "orderingAccount": 111,
+    "orderingTypeAcount": "string",
+    "postalCode": 57800,
+    "referenceCreatedPayment": 811111112,
+    "rfc": "ROPL951201091",
+    "typeTransaction": 1
+  }'</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Authorization: Bearer YWRtaW46c2VjcmV0'</span><span class="p">,</span>
+    <span class="s1">'Content-Type: application/json'</span>
+  <span class="p">),</span>
+<span class="p">));</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="n">cUnirest</span><span class="mf">.</span><span class="nf">setTimeouts</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="mf">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"</span><span class="p">)</span>
-  <span class="mf">.</span><span class="nb">header</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">)</span>
-  <span class="mf">.</span><span class="nf">body</span><span class="p">(</span><span class="s2">"{\n  </span><span class="se">\"</span><span class="s2">entity</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">com.cascade</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">cascTest4333</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">user</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">jim@cascadefintech.com</span><span class="se">\"\n\n</span><span class="s2">}"</span><span class="p">)</span>
-  <span class="mf">.</span><span class="nf">asString</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 
 </code></pre></div>
 <blockquote>
@@ -524,7 +525,7 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -533,7 +534,7 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </thead><tbody>
 <tr>
 <td>alphanumericReference</td>
-<td>nd</td>
+<td>Referencia alfanumerica aleatoria</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -549,7 +550,7 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </tr>
 <tr>
 <td>beneficiaryCity</td>
-<td>CDMX</td>
+<td>Ciudad del beneficiario</td>
 </tr>
 <tr>
 <td>beneficiaryName</td>
@@ -612,34 +613,24 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 <td>Tipo de la transaccion</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">api</span> <span class="o">=</span> <span class="nl">Kittn:</span><span class="o">:</span><span class="nc">APIClient</span><span class="o">.</span><span class="na">authorize</span><span class="o">!(</span><span class="err">'</span><span class="n">meowmeowmeow</span><span class="err">'</span><span class="o">)</span>
+<span class="n">api</span><span class="o">.</span><span class="na">kittens</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">const</span> <span class="no">kittn</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">let</span> <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="mf">.</span><span class="nf">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="n">let</span> <span class="n">max</span> <span class="o">=</span> <span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>El codigo anterior devuelve un JSON estructurado así:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific kitten.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -647,65 +638,222 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>alphanumericReference</td>
+<td>Referencia alfanumerica aleatoria</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Monto de la transaccion</td>
+</tr>
+<tr>
+<td>beneficiaryAcount</td>
+<td>Cuenta beneficiaria</td>
+</tr>
+<tr>
+<td>beneficiaryAddress1</td>
+<td>Direccion del beneficiario</td>
+</tr>
+<tr>
+<td>beneficiaryCity</td>
+<td>Ciudad del beneficiario</td>
 </tr>
 </tbody></table>
-<h1 id='api-emision'>API Emision</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='api-emision'>API Emision</h1><h2 id='iniciar-sesion'>Iniciar sesion</h2>
+<p>Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. </p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard "</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"Basic YWRtaW46c2VjcmV0"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"\"loginRequest\": { \n   \"authentication\": { \n    \"user\": \"test@gmail.com\", \n    \"mail\": \"test@gmail.com\", \n    \"password\": \"**********\" \n   }, \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\", \n   \"dateTransaction\": \"20230113\", \n   \"hourTransaction\": \"134209\", \n }, \n \"device\": { \n   \"os\": \"Android\", \n   \"systemOperativeName\": \"Version Desconocida\", \n   \"systemOperativeVersion\": \"15\", \n   \"manufacturer\": \"Google\", \n   \"model\": \"Pixel 7 Pro\", \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\" \n }, \n \"appInfo\": { \n   \"nameApp\": \"eVolv\", \n   \"versionApp\": \"21.0.0\", \n   \"enviroment\": \"SANDBOX\", \n   \"versionConnector\": \"2.0.0\" \n } "</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard '</span><span class="p">,</span>
+  <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="no">CURLOPT_TIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="no">CURLOPT_FOLLOWLOCATION</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTP_VERSION</span> <span class="o">=&gt;</span> <span class="no">CURL_HTTP_VERSION_1_1</span><span class="p">,</span>
+  <span class="no">CURLOPT_CUSTOMREQUEST</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="no">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span><span class="s1">'"loginRequest": { 
+   "authentication": { 
+    "user": "test@gmail.com", 
+    "mail": "test@gmail.com", 
+    "password": "**********" 
+   }, 
+   "latitude": "19.6735912", 
+   "longitude": "-99.0711819", 
+   "dateTransaction": "20230113", 
+   "hourTransaction": "134209", 
+ }, 
+ "device": { 
+   "os": "Android", 
+   "systemOperativeName": "Version Desconocida", 
+   "systemOperativeVersion": "15", 
+   "manufacturer": "Google", 
+   "model": "Pixel 7 Pro", 
+   "latitude": "19.6735912", 
+   "longitude": "-99.0711819" 
+ }, 
+ "appInfo": { 
+   "nameApp": "eVolv", 
+   "versionApp": "21.0.0", 
+   "enviroment": "SANDBOX", 
+   "versionConnector": "2.0.0" 
+ } '</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Authorization: Basic YWRtaW46c2VjcmV0'</span><span class="p">,</span>
+    <span class="s1">'Content-Type: application/json'</span>
+  <span class="p">),</span>
+<span class="p">));</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
+
+
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>El codigo anterior devuelve un JSON estructurado así:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"loginResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23473882130001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"idUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"idStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23473882130001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dni"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9739347348"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keyOnboard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"keyOnboard"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pinDriver"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clabe"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646180585000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2347388213"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fullName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALFREDO MEDINA REYES"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"catalogVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amedina@test.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"virtualAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"299873"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"idSucursal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6506"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Durango"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"registrationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-19"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userApp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lilas "</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"exteriorNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"73483"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Las Palmas"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Durango"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Durango"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilePin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86267"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"secundaryClabeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ND"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nl">"cardsResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"acount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"299873"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"saldos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"availableConsumptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.80"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cardAvailableBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"cardObFuscated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"491049******XXXX"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dateVen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2030-08"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fisica"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stateCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALFREDO MEDINA REYES"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"typeDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"documentNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9739347348"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23473882130001"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clabe"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646180585000000001"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<p><code>POST (url)/aldbrn/internal/aw/login</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>user</td>
+<td>Usuario</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>mail</td>
+<td>Correo electronico</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Clave asignada</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>Latitud de la ubicacion actual</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>Longitud de la ubicacion actual</td>
+</tr>
+<tr>
+<td>dateTransaction</td>
+<td>Fecha</td>
+</tr>
+<tr>
+<td>hourTransaction</td>
+<td>Hora</td>
+</tr>
+<tr>
+<td>os</td>
+<td>Sistema operativo del dispositivo</td>
+</tr>
+<tr>
+<td>systemOperativeName</td>
+<td>Nombre de la version del sistema operativo</td>
+</tr>
+<tr>
+<td>systemOperativeVersion</td>
+<td>Numero de la version del sistema operativo</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>Creado por o marca</td>
+</tr>
+<tr>
+<td>model</td>
+<td>Modelo del dispositivo</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>Latitud de la ubicacion actual</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>Longitud de la ubicacion actual</td>
+</tr>
+<tr>
+<td>nameApp</td>
+<td>Nombre de la aplicacion</td>
+</tr>
+<tr>
+<td>versionApp</td>
+<td>Numero de version de la app</td>
+</tr>
+<tr>
+<td>enviroment</td>
+<td>Entorno - desarrollo o produccion</td>
+</tr>
+<tr>
+<td>versionConnector</td>
+<td>Numero de version del conector</td>
 </tr>
 </tbody></table>
 
@@ -774,9 +922,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="java">java</a>
                 <a href="#" data-language-name="php">php</a>
           </div>
       </div>
