@@ -327,7 +327,7 @@
                     <a href="#crear-orden" class="toc-h2 toc-link" data-title="Crear orden">Crear orden</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#agregar-entidad" class="toc-h2 toc-link" data-title="Agregar Entidad">Agregar Entidad</a>
                   </li>
               </ul>
           </li>
@@ -613,23 +613,27 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 <td>Tipo de la transaccion</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
+<h2 id='agregar-entidad'>Agregar Entidad</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="nl">Kittn:</span><span class="o">:</span><span class="nc">APIClient</span><span class="o">.</span><span class="na">authorize</span><span class="o">!(</span><span class="err">'</span><span class="n">meowmeowmeow</span><span class="err">'</span><span class="o">)</span>
 <span class="n">api</span><span class="o">.</span><span class="na">kittens</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">const</span> <span class="no">kittn</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="n">let</span> <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="mf">.</span><span class="nf">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="n">let</span> <span class="n">max</span> <span class="o">=</span> <span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"bussinesName"</span><span class="o">:</span> <span class="s2">"Test blumon 12"</span><span class="p">,</span>
+  <span class="s2">"bussinesNameShort"</span><span class="o">:</span> <span class="s2">"SUC"</span><span class="p">,</span>
+  <span class="s2">"contextFatherID"</span><span class="o">:</span> <span class="s2">"com.sub.blumonpay"</span><span class="p">,</span>
+  <span class="s2">"userRequest"</span><span class="o">:</span> <span class="p">{</span>   
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"useremail@gmail.com"</span><span class="p">,</span>   
+    <span class="s2">"telephoneNumber"</span><span class="o">:</span> <span class="s2">"565311111"</span><span class="p">,</span>
+    <span class="s2">"user"</span><span class="o">:</span> <span class="s2">"72663-7266-8j71-76112"</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <blockquote>
 <p>El codigo anterior devuelve un JSON estructurado así:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://sdbx-sirio.kashplataforma.com/EntitiesServices/addEntity</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -638,30 +642,34 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </tr>
 </thead><tbody>
 <tr>
-<td>alphanumericReference</td>
-<td>Referencia alfanumerica aleatoria</td>
+<td>bussinesName</td>
+<td>Nombre de la entidad</td>
 </tr>
 <tr>
-<td>amount</td>
-<td>Monto de la transaccion</td>
+<td>bussinesNameShort</td>
+<td>Nombre corto de la entidad</td>
 </tr>
 <tr>
-<td>beneficiaryAcount</td>
-<td>Cuenta beneficiaria</td>
+<td>contextFatherID</td>
+<td>ID de la entidad</td>
 </tr>
 <tr>
-<td>beneficiaryAddress1</td>
-<td>Direccion del beneficiario</td>
+<td>email</td>
+<td>Correo electronico</td>
 </tr>
 <tr>
-<td>beneficiaryCity</td>
-<td>Ciudad del beneficiario</td>
+<td>telephoneNumber</td>
+<td>Telefono</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Usuario</td>
 </tr>
 </tbody></table>
 <h1 id='api-emision'>API Emision</h1><h2 id='iniciar-sesion'>Iniciar sesion</h2>
 <p>Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. </p>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard "</span><span class="o">)</span>
+<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/registerOnboard "</span><span class="o">)</span>
   <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"Basic YWRtaW46c2VjcmV0"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"\"loginRequest\": { \n   \"authentication\": { \n    \"user\": \"test@gmail.com\", \n    \"mail\": \"test@gmail.com\", \n    \"password\": \"**********\" \n   }, \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\", \n   \"dateTransaction\": \"20230113\", \n   \"hourTransaction\": \"134209\", \n }, \n \"device\": { \n   \"os\": \"Android\", \n   \"systemOperativeName\": \"Version Desconocida\", \n   \"systemOperativeVersion\": \"15\", \n   \"manufacturer\": \"Google\", \n   \"model\": \"Pixel 7 Pro\", \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\" \n }, \n \"appInfo\": { \n   \"nameApp\": \"eVolv\", \n   \"versionApp\": \"21.0.0\", \n   \"enviroment\": \"SANDBOX\", \n   \"versionConnector\": \"2.0.0\" \n } "</span><span class="o">)</span>
@@ -670,7 +678,7 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard '</span><span class="p">,</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/registerOnboard '</span><span class="p">,</span>
   <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
   <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
@@ -775,7 +783,7 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST (url)/aldbrn/internal/aw/login</code></p>
+<p><code>POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -856,10 +864,6 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 <td>Numero de version del conector</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
