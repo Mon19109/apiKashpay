@@ -233,7 +233,7 @@ postalCode | Codigo postal
 referenceCreatedPayment | 811111112
 typeTransaction | Tipo de la transaccion
 
-## Delete a Specific Kitten
+## Agregar Entidad
 
 ```java
 require 'kittn'
@@ -243,10 +243,16 @@ api.kittens.delete(2)
 ```
 
 ```php
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+{
+  "bussinesName": "Test blumon 12",
+  "bussinesNameShort": "SUC",
+  "contextFatherID": "com.sub.blumonpay",
+  "userRequest": {   
+    "email": "useremail@gmail.com",   
+    "telephoneNumber": "565311111",
+    "user": "72663-7266-8j71-76112" 
+  }
+}
 ```
 
 > El codigo anterior devuelve un JSON estructurado así:
@@ -255,31 +261,32 @@ let max = api.kittens.delete(2);
 
 ```
 
-This endpoint deletes a specific kitten.
-
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST http://sdbx-sirio.kashplataforma.com/EntitiesServices/addEntity`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-alphanumericReference | Referencia alfanumerica aleatoria
-amount | Monto de la transaccion
-beneficiaryAcount | Cuenta beneficiaria
-beneficiaryAddress1 | Direccion del beneficiario
-beneficiaryCity |Ciudad del beneficiario
+bussinesName | Nombre de la entidad
+bussinesNameShort | Nombre corto de la entidad
+contextFatherID | ID de la entidad
+email | Correo electronico 
+telephoneNumber | Telefono
+user | Usuario
+
 
 # API Emision
 
 ## Iniciar sesion
+
 Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
 
 
 ```java
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard ")
+HttpResponse<String> response = Unirest.post("http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/registerOnboard ")
   .header("Authorization", "Basic YWRtaW46c2VjcmV0")
   .header("Content-Type", "application/json")
   .body("\"loginRequest\": { \n   \"authentication\": { \n    \"user\": \"test@gmail.com\", \n    \"mail\": \"test@gmail.com\", \n    \"password\": \"**********\" \n   }, \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\", \n   \"dateTransaction\": \"20230113\", \n   \"hourTransaction\": \"134209\", \n }, \n \"device\": { \n   \"os\": \"Android\", \n   \"systemOperativeName\": \"Version Desconocida\", \n   \"systemOperativeVersion\": \"15\", \n   \"manufacturer\": \"Google\", \n   \"model\": \"Pixel 7 Pro\", \n   \"latitude\": \"19.6735912\", \n   \"longitude\": \"-99.0711819\" \n }, \n \"appInfo\": { \n   \"nameApp\": \"eVolv\", \n   \"versionApp\": \"21.0.0\", \n   \"enviroment\": \"SANDBOX\", \n   \"versionConnector\": \"2.0.0\" \n } ")
@@ -291,7 +298,7 @@ HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataform
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'http://sdbx-centauri.kashplataforma.com/aldbrn/internal/aw/registerOnboard ',
+  CURLOPT_URL => 'http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/registerOnboard ',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -400,7 +407,7 @@ This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`POST (url)/aldbrn/internal/aw/login`
+`POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
 
 ### Query Parameters
 
@@ -425,10 +432,5 @@ versionApp | Numero de version de la app
 enviroment | Entorno - desarrollo o produccion 
 versionConnector | Numero de version del conector
  
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
 
 
