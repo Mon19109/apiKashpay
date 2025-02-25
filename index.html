@@ -318,14 +318,19 @@
             <a href="#introduccion" class="toc-h1 toc-link" data-title="Introduccion">Introduccion</a>
           </li>
           <li>
-            <a href="#api-adquirencia" class="toc-h1 toc-link" data-title="API Adquirencia">API Adquirencia</a>
+            <a href="#autenticacion" class="toc-h1 toc-link" data-title="Autenticacion">Autenticacion</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#autenticacion" class="toc-h2 toc-link" data-title="Autenticacion">Autenticacion</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
-                    <a href="#crear-orden" class="toc-h2 toc-link" data-title="Crear orden">Crear orden</a>
+                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="Query Parameters">Query Parameters</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-adquirencia" class="toc-h1 toc-link" data-title="API Adquirencia">API Adquirencia</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#agregar-entidad" class="toc-h2 toc-link" data-title="Agregar Entidad">Agregar Entidad</a>
                   </li>
@@ -336,6 +341,33 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#iniciar-sesion" class="toc-h2 toc-link" data-title="Iniciar sesion">Iniciar sesion</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-okpay" class="toc-h1 toc-link" data-title="API OKPay">API OKPay</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#crear-orden" class="toc-h2 toc-link" data-title="Crear orden">Crear orden</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-entitiesservices" class="toc-h1 toc-link" data-title="API EntitiesServices">API EntitiesServices</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#getbalance" class="toc-h2 toc-link" data-title="getBalance">getBalance</a>
+                  </li>
+                  <li>
+                    <a href="#getoperations" class="toc-h2 toc-link" data-title="getOperations">getOperations</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-cardservices" class="toc-h1 toc-link" data-title="API CardServices">API CardServices</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#iniciar-sesion-2" class="toc-h2 toc-link" data-title="Iniciar sesion">Iniciar sesion</a>
                   </li>
               </ul>
           </li>
@@ -353,12 +385,14 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduccion'>Introduccion</h1>
-<p>Bienvenidos a la API de Kashpay, donde encontraras servicios web para uso de las dos APIS  que conforman el entorno Kashpay (emision y adquirencia). </p>
+<p>Bienvenidos a la API de Kashpay, donde encontraras servicios web para uso de las APIS  que conforman el entorno Kashpay. </p>
 
 <p>Nuestros servicios estan diseñados con la estructura RESTful. Los request y response se presentan en  formato JSON.</p>
 
 <p>Para poder hacer uso de los siguientes servicios, es necesario llenar el siguiente  formulario para poder registrarlo en nuestro sistema y generar credenciales de  operación. </p>
-<h1 id='api-adquirencia'>API Adquirencia</h1><h2 id='autenticacion'>Autenticacion</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<h1 id='autenticacion'>Autenticacion</h1>
+<p>Servicio para la generación de Token de seguridad</p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
 <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"entity\": \"com.cascade\",\n  \"password\": \"cascTest4333\",\n  \"user\": \"jim@cascadefintech.com\"\n\n}"</span><span class="o">)</span>
@@ -401,7 +435,7 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Para utilizar los Servicios de la Plataforma Onsigna (POS, Comercio Electrónico, Pago de Facturas, Libro a Libro, etc.) es obligatorio que se pueda generar un Token de Sesión.</p>
+<p>Para utilizar los Servicios de la Plataforma Kashpay (POS, Comercio Electrónico, Pago de Facturas, Libro a Libro, etc.) es obligatorio que se pueda generar un Token de Sesión.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -428,195 +462,7 @@
 <aside class="success">
 Recuerda — Las credenciales para este propósito se proporcionan a nivel de Entidad.
 </aside>
-<h2 id='crear-orden'>Crear orden</h2>
-<p>Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
-El envío de dinero nacional se realiza a través del operativo &quot;1 - Transferencia Interbancaria SPEI&quot;, se puede visualizar en la pestaña Modelo.</p>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-centauri.kashplataforma.com/OKPay/createOrder"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"Basic YWRtaW46c2VjcmV0"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-
-<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder'</span><span class="p">,</span>
-  <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="no">CURLOPT_TIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="no">CURLOPT_FOLLOWLOCATION</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="no">CURLOPT_HTTP_VERSION</span> <span class="o">=&gt;</span> <span class="no">CURL_HTTP_VERSION_1_1</span><span class="p">,</span>
-  <span class="no">CURLOPT_CUSTOMREQUEST</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span><span class="p">,</span>
-  <span class="no">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span><span class="s1">'{
-    "alphanumericReference": "PROVV0011712091",
-    "amount": 250,
-    "beneficiaryAcount": 87459854,
-    "beneficiaryAcountSPEI": 87459854,
-    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
-    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
-    "beneficiaryCity": "CDMX",
-    "beneficiaryName": "Florentino Eter",
-    "beneficiaryTypeAcount": "string",
-    "codeInstituteBank": "002",
-    "concept": "Deposito Maria",
-    "currency": 484,
-    "dataAccreditationBeneficiary": 99,
-    "dateTransaction": "030421",
-    "description": "prueba",
-    "email": "testrest@gmail.com",
-    "idBank": 4177,
-    "idEntity": 4177,
-    "numericReference": 43223123,
-    "observation": "test@gmail.com",
-    "orderingAccount": 111,
-    "orderingTypeAcount": "string",
-    "postalCode": 57800,
-    "referenceCreatedPayment": 811111112,
-    "rfc": "ROPL951201091",
-    "typeTransaction": 1
-  }'</span><span class="p">,</span>
-  <span class="no">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'Authorization: Bearer YWRtaW46c2VjcmV0'</span><span class="p">,</span>
-    <span class="s1">'Content-Type: application/json'</span>
-  <span class="p">),</span>
-<span class="p">));</span>
-
-<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
-
-<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
-
-</code></pre></div>
-<blockquote>
-<p>El codigo anterior devuelve un JSON estructurado así, si la respuesta success es true:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"orderEntityResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-20T17:11:46.794+0000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"uptadedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-20T17:11:46.794+0000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13699"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"numericReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43223123"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"alphanumericReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVV0011712091"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"referenceCreatedPayment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on000000011598"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"initialBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"finalBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10250</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"totalItems"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"currentPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Si la respuesta success es false</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EntityException"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No se pudo procesar el pago"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1022</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"totalItems"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"currentPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>alphanumericReference</td>
-<td>Referencia alfanumerica aleatoria</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>Monto de la transaccion</td>
-</tr>
-<tr>
-<td>beneficiaryAcount</td>
-<td>Cuenta beneficiaria</td>
-</tr>
-<tr>
-<td>beneficiaryAddress1</td>
-<td>Direccion del beneficiario</td>
-</tr>
-<tr>
-<td>beneficiaryCity</td>
-<td>Ciudad del beneficiario</td>
-</tr>
-<tr>
-<td>beneficiaryName</td>
-<td>Nombre del beneficiario</td>
-</tr>
-<tr>
-<td>beneficiaryTypeAcount</td>
-<td>Tipo de la cuenta beneficiaria</td>
-</tr>
-<tr>
-<td>codeInstituteBank</td>
-<td>Codigo de la institucion</td>
-</tr>
-<tr>
-<td>concept</td>
-<td>Concepto de la transaccion</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>484 por default</td>
-</tr>
-<tr>
-<td>dataAccreditationBeneficiary</td>
-<td>99</td>
-</tr>
-<tr>
-<td>dateTransaction</td>
-<td>030421</td>
-</tr>
-<tr>
-<td>description</td>
-<td>descripcion de la transaccion</td>
-</tr>
-<tr>
-<td>email</td>
-<td>Correo electronico</td>
-</tr>
-<tr>
-<td>idBank</td>
-<td>ID de la institucion bancaria</td>
-</tr>
-<tr>
-<td>idEntity</td>
-<td>ID de la entidad</td>
-</tr>
-<tr>
-<td>numericReference</td>
-<td>Referencia numerica</td>
-</tr>
-<tr>
-<td>postalCode</td>
-<td>Codigo postal</td>
-</tr>
-<tr>
-<td>referenceCreatedPayment</td>
-<td>811111112</td>
-</tr>
-<tr>
-<td>typeTransaction</td>
-<td>Tipo de la transaccion</td>
-</tr>
-</tbody></table>
-<h2 id='agregar-entidad'>Agregar Entidad</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="nl">Kittn:</span><span class="o">:</span><span class="nc">APIClient</span><span class="o">.</span><span class="na">authorize</span><span class="o">!(</span><span class="err">'</span><span class="n">meowmeowmeow</span><span class="err">'</span><span class="o">)</span>
-<span class="n">api</span><span class="o">.</span><span class="na">kittens</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<h1 id='api-adquirencia'>API Adquirencia</h1><h2 id='agregar-entidad'>Agregar Entidad</h2><div class="highlight"><pre class="highlight java tab-java"><code>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
   <span class="s2">"bussinesName"</span><span class="o">:</span> <span class="s2">"Test blumon 12"</span><span class="p">,</span>
   <span class="s2">"bussinesNameShort"</span><span class="o">:</span> <span class="s2">"SUC"</span><span class="p">,</span>
@@ -632,9 +478,9 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 <p>El codigo anterior devuelve un JSON estructurado así:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST http://sdbx-sirio.kashplataforma.com/EntitiesServices/addEntity</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -782,9 +628,9 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -862,6 +708,284 @@ El envío de dinero nacional se realiza a través del operativo &quot;1 - Transf
 <tr>
 <td>versionConnector</td>
 <td>Numero de version del conector</td>
+</tr>
+</tbody></table>
+<h1 id='api-okpay'>API OKPay</h1><h2 id='crear-orden'>Crear orden</h2>
+<p>Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
+El envío de dinero nacional se realiza a través del operativo &quot;1 - Transferencia Interbancaria SPEI&quot;, se puede visualizar en la pestaña Modelo.</p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Unirest</span><span class="o">.</span><span class="na">setTimeouts</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"http://sdbx-centauri.kashplataforma.com/OKPay/createOrder"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"Basic YWRtaW46c2VjcmV0"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder'</span><span class="p">,</span>
+  <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="no">CURLOPT_TIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="no">CURLOPT_FOLLOWLOCATION</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTP_VERSION</span> <span class="o">=&gt;</span> <span class="no">CURL_HTTP_VERSION_1_1</span><span class="p">,</span>
+  <span class="no">CURLOPT_CUSTOMREQUEST</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="no">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span><span class="s1">'{
+    "alphanumericReference": "PROVV0011712091",
+    "amount": 250,
+    "beneficiaryAcount": 87459854,
+    "beneficiaryAcountSPEI": 87459854,
+    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryCity": "CDMX",
+    "beneficiaryName": "Florentino Eter",
+    "beneficiaryTypeAcount": "string",
+    "codeInstituteBank": "002",
+    "concept": "Deposito Maria",
+    "currency": 484,
+    "dataAccreditationBeneficiary": 99,
+    "dateTransaction": "030421",
+    "description": "prueba",
+    "email": "testrest@gmail.com",
+    "idBank": 4177,
+    "idEntity": 4177,
+    "numericReference": 43223123,
+    "observation": "test@gmail.com",
+    "orderingAccount": 111,
+    "orderingTypeAcount": "string",
+    "postalCode": 57800,
+    "referenceCreatedPayment": 811111112,
+    "rfc": "ROPL951201091",
+    "typeTransaction": 1
+  }'</span><span class="p">,</span>
+  <span class="no">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Authorization: Bearer YWRtaW46c2VjcmV0'</span><span class="p">,</span>
+    <span class="s1">'Content-Type: application/json'</span>
+  <span class="p">),</span>
+<span class="p">));</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
+
+</code></pre></div>
+<blockquote>
+<p>El codigo anterior devuelve un JSON estructurado así, si la respuesta success es true:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"orderEntityResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-20T17:11:46.794+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"uptadedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-20T17:11:46.794+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13699"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"numericReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43223123"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"alphanumericReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVV0011712091"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"referenceCreatedPayment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on000000011598"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"initialBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10250</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"totalItems"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currentPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Si la respuesta success es false</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EntityException"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No se pudo procesar el pago"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1022</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"totalItems"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currentPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alphanumericReference</td>
+<td>Referencia alfanumerica aleatoria</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Monto de la transaccion</td>
+</tr>
+<tr>
+<td>beneficiaryAcount</td>
+<td>Cuenta beneficiaria</td>
+</tr>
+<tr>
+<td>beneficiaryAddress1</td>
+<td>Direccion del beneficiario</td>
+</tr>
+<tr>
+<td>beneficiaryCity</td>
+<td>Ciudad del beneficiario</td>
+</tr>
+<tr>
+<td>beneficiaryName</td>
+<td>Nombre del beneficiario</td>
+</tr>
+<tr>
+<td>beneficiaryTypeAcount</td>
+<td>Tipo de la cuenta beneficiaria</td>
+</tr>
+<tr>
+<td>codeInstituteBank</td>
+<td>Codigo de la institucion</td>
+</tr>
+<tr>
+<td>concept</td>
+<td>Concepto de la transaccion</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>484 por default</td>
+</tr>
+<tr>
+<td>dataAccreditationBeneficiary</td>
+<td>99</td>
+</tr>
+<tr>
+<td>dateTransaction</td>
+<td>030421</td>
+</tr>
+<tr>
+<td>description</td>
+<td>descripcion de la transaccion</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Correo electronico</td>
+</tr>
+<tr>
+<td>idBank</td>
+<td>ID de la institucion bancaria</td>
+</tr>
+<tr>
+<td>idEntity</td>
+<td>ID de la entidad</td>
+</tr>
+<tr>
+<td>numericReference</td>
+<td>Referencia numerica</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>Codigo postal</td>
+</tr>
+<tr>
+<td>referenceCreatedPayment</td>
+<td>811111112</td>
+</tr>
+<tr>
+<td>typeTransaction</td>
+<td>Tipo de la transaccion</td>
+</tr>
+</tbody></table>
+<h1 id='api-entitiesservices'>API EntitiesServices</h1><h2 id='getbalance'>getBalance</h2><div class="highlight"><pre class="highlight java tab-java"><code>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
+</code></pre></div>
+<blockquote>
+<p>El codigo anterior devuelve un JSON estructurado así:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all kittens.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>Usuario</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>Correo electronico</td>
+</tr>
+</tbody></table>
+<h2 id='getoperations'>getOperations</h2>
+<p>Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. </p>
+<div class="highlight"><pre class="highlight java tab-java"><code>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
+</code></pre></div>
+<blockquote>
+<p>El codigo anterior devuelve un JSON estructurado así:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all kittens.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>Usuario</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>Correo electronico</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Clave asignada</td>
+</tr>
+</tbody></table>
+<h1 id='api-cardservices'>API CardServices</h1><h2 id='iniciar-sesion-2'>Iniciar sesion</h2>
+<p>Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. </p>
+<div class="highlight"><pre class="highlight java tab-java"><code>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
+</code></pre></div>
+<blockquote>
+<p>El codigo anterior devuelve un JSON estructurado así:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all kittens.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>Usuario</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>Correo electronico</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Clave asignada</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
