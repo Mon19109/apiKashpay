@@ -24,14 +24,18 @@ meta:
 
 # Introduccion
 
-Bienvenidos a la API de Kashpay, donde encontraras servicios web para uso de las dos APIS  que conforman el entorno Kashpay (emision y adquirencia). 
+Bienvenidos a la API de Kashpay, donde encontraras servicios web para uso de las APIS  que conforman el entorno Kashpay. 
 
 Nuestros servicios estan diseñados con la estructura RESTful. Los request y response se presentan en  formato JSON.
 
 Para poder hacer uso de los siguientes servicios, es necesario llenar el siguiente  formulario para poder registrarlo en nuestro sistema y generar credenciales de  operación. 
 
-# API Adquirencia
-## Autenticacion
+
+
+
+# Autenticacion
+
+Servicio para la generación de Token de seguridad
 
 ```java
 Unirest.setTimeouts(0, 0);
@@ -82,7 +86,7 @@ echo $response;
 }
 ```
 
-Para utilizar los Servicios de la Plataforma Onsigna (POS, Comercio Electrónico, Pago de Facturas, Libro a Libro, etc.) es obligatorio que se pueda generar un Token de Sesión.
+Para utilizar los Servicios de la Plataforma Kashpay (POS, Comercio Electrónico, Pago de Facturas, Libro a Libro, etc.) es obligatorio que se pueda generar un Token de Sesión.
 
 ### HTTP Request
 
@@ -100,146 +104,16 @@ user      | Correo electronico registrado.
 Recuerda — Las credenciales para este propósito se proporcionan a nivel de Entidad.
 </aside>
 
-## Crear orden
 
-Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
-El envío de dinero nacional se realiza a través del operativo "1 - Transferencia Interbancaria SPEI", se puede visualizar en la pestaña Modelo.
 
-```java
-Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/OKPay/createOrder")
-  .header("Authorization", "Basic YWRtaW46c2VjcmV0")
-  .header("Content-Type", "application/json")
-  .body("{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n")
-  .asString();
-```
 
-```php
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
-    "alphanumericReference": "PROVV0011712091",
-    "amount": 250,
-    "beneficiaryAcount": 87459854,
-    "beneficiaryAcountSPEI": 87459854,
-    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
-    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
-    "beneficiaryCity": "CDMX",
-    "beneficiaryName": "Florentino Eter",
-    "beneficiaryTypeAcount": "string",
-    "codeInstituteBank": "002",
-    "concept": "Deposito Maria",
-    "currency": 484,
-    "dataAccreditationBeneficiary": 99,
-    "dateTransaction": "030421",
-    "description": "prueba",
-    "email": "testrest@gmail.com",
-    "idBank": 4177,
-    "idEntity": 4177,
-    "numericReference": 43223123,
-    "observation": "test@gmail.com",
-    "orderingAccount": 111,
-    "orderingTypeAcount": "string",
-    "postalCode": 57800,
-    "referenceCreatedPayment": 811111112,
-    "rfc": "ROPL951201091",
-    "typeTransaction": 1
-  }',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer YWRtaW46c2VjcmV0',
-    'Content-Type: application/json'
-  ),
-));
 
-$response = curl_exec($curl);
-
-curl_close($curl);
-echo $response;
-
-```
-
-> El codigo anterior devuelve un JSON estructurado así, si la respuesta success es true:
-
-```json
-{
-  "success": true,
-  "orderEntityResponse": {
-    "createdAt": "2022-12-20T17:11:46.794+0000",
-    "uptadedAt": "2022-12-20T17:11:46.794+0000",
-    "id": "13699",
-    "numericReference": "43223123",
-    "alphanumericReference": "PROVV0011712091",
-    "referenceCreatedPayment": "on000000011598",
-    "status": 25,
-    "initialBalance": 10000,
-    "finalBalance": 10250
-  },
-  "totalItems": 0,
-  "totalPages": 0,
-  "currentPage": 0
-}
-```
-> Si la respuesta success es false
-
-```json
-{
-  "success": false,
-  "error": {
-    "name": "EntityException",
-    "message": "No se pudo procesar el pago",
-    "code": 1022
-  },
-  "totalItems": 0,
-  "totalPages": 0,
-  "currentPage": 0
-}
-```
-
-### HTTP Request
-
-`POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder`
-
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-alphanumericReference | Referencia alfanumerica aleatoria
-amount | Monto de la transaccion
-beneficiaryAcount | Cuenta beneficiaria
-beneficiaryAddress1 | Direccion del beneficiario
-beneficiaryCity |Ciudad del beneficiario
-beneficiaryName | Nombre del beneficiario
-beneficiaryTypeAcount | Tipo de la cuenta beneficiaria
-codeInstituteBank | Codigo de la institucion
-concept | Concepto de la transaccion
-currency | 484 por default
-dataAccreditationBeneficiary | 99
-dateTransaction | 030421
-description | descripcion de la transaccion
-email | Correo electronico
-idBank | ID de la institucion bancaria
-idEntity | ID de la entidad 
-numericReference | Referencia numerica
-postalCode | Codigo postal
-referenceCreatedPayment | 811111112
-typeTransaction | Tipo de la transaccion
-
+# API Adquirencia
 ## Agregar Entidad
 
 ```java
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
 ```
 
 ```php
@@ -275,6 +149,9 @@ contextFatherID | ID de la entidad
 email | Correo electronico 
 telephoneNumber | Telefono
 user | Usuario
+
+
+
 
 
 # API Emision
@@ -433,4 +310,252 @@ enviroment | Entorno - desarrollo o produccion
 versionConnector | Numero de version del conector
  
 
+
+
+
+
+
+# API OKPay
+## Crear orden
+
+Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
+El envío de dinero nacional se realiza a través del operativo "1 - Transferencia Interbancaria SPEI", se puede visualizar en la pestaña Modelo.
+
+```java
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/OKPay/createOrder")
+  .header("Authorization", "Basic YWRtaW46c2VjcmV0")
+  .header("Content-Type", "application/json")
+  .body("{\n  \"alphanumericReference\": \"PROVV0011712091\",\n  \"amount\": 250,\n  \"beneficiaryAcount\": 87459854,\n  \"beneficiaryAcountSPEI\": 87459854,\n  \"beneficiaryAddress1\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryAddress2\": \"Vicente G 132 Mz5 Lt14\",\n  \"beneficiaryCity\": \"CDMX\",\n  \"beneficiaryName\": \"Florentino Eter\",\n  \"beneficiaryTypeAcount\": \"string\",\n  \"codeInstituteBank\": \"002\",\n  \"concept\": \"Deposito Maria\",\n  \"currency\": 484,\n  \"dataAccreditationBeneficiary\": 99,\n  \"dateTransaction\": \"030421\",\n  \"description\": \"prueba\",\n  \"email\": \"testrest@gmail.com\",\n  \"idBank\": 4177,\n  \"idEntity\": 4177,\n  \"numericReference\": 43223123,\n  \"observation\": \"test@gmail.com\",\n  \"orderingAccount\": 111,\n  \"orderingTypeAcount\": \"string\",\n  \"postalCode\": 57800,\n  \"referenceCreatedPayment\": 811111112,\n  \"rfc\": \"ROPL951201091\",\n  \"typeTransaction\": 1\n}\n")
+  .asString();
+```
+
+```php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://sdbx-centauri.kashplataforma.com/OKPay/createOrder',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+    "alphanumericReference": "PROVV0011712091",
+    "amount": 250,
+    "beneficiaryAcount": 87459854,
+    "beneficiaryAcountSPEI": 87459854,
+    "beneficiaryAddress1": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryAddress2": "Vicente G 132 Mz5 Lt14",
+    "beneficiaryCity": "CDMX",
+    "beneficiaryName": "Florentino Eter",
+    "beneficiaryTypeAcount": "string",
+    "codeInstituteBank": "002",
+    "concept": "Deposito Maria",
+    "currency": 484,
+    "dataAccreditationBeneficiary": 99,
+    "dateTransaction": "030421",
+    "description": "prueba",
+    "email": "testrest@gmail.com",
+    "idBank": 4177,
+    "idEntity": 4177,
+    "numericReference": 43223123,
+    "observation": "test@gmail.com",
+    "orderingAccount": 111,
+    "orderingTypeAcount": "string",
+    "postalCode": 57800,
+    "referenceCreatedPayment": 811111112,
+    "rfc": "ROPL951201091",
+    "typeTransaction": 1
+  }',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer YWRtaW46c2VjcmV0',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+```
+
+> El codigo anterior devuelve un JSON estructurado así, si la respuesta success es true:
+
+```json
+{
+  "success": true,
+  "orderEntityResponse": {
+    "createdAt": "2022-12-20T17:11:46.794+0000",
+    "uptadedAt": "2022-12-20T17:11:46.794+0000",
+    "id": "13699",
+    "numericReference": "43223123",
+    "alphanumericReference": "PROVV0011712091",
+    "referenceCreatedPayment": "on000000011598",
+    "status": 25,
+    "initialBalance": 10000,
+    "finalBalance": 10250
+  },
+  "totalItems": 0,
+  "totalPages": 0,
+  "currentPage": 0
+}
+```
+> Si la respuesta success es false
+
+```json
+{
+  "success": false,
+  "error": {
+    "name": "EntityException",
+    "message": "No se pudo procesar el pago",
+    "code": 1022
+  },
+  "totalItems": 0,
+  "totalPages": 0,
+  "currentPage": 0
+}
+```
+
+### HTTP Request
+
+`POST http://sdbx-centauri.kashplataforma.com/OKPay/createOrder`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+alphanumericReference | Referencia alfanumerica aleatoria
+amount | Monto de la transaccion
+beneficiaryAcount | Cuenta beneficiaria
+beneficiaryAddress1 | Direccion del beneficiario
+beneficiaryCity |Ciudad del beneficiario
+beneficiaryName | Nombre del beneficiario
+beneficiaryTypeAcount | Tipo de la cuenta beneficiaria
+codeInstituteBank | Codigo de la institucion
+concept | Concepto de la transaccion
+currency | 484 por default
+dataAccreditationBeneficiary | 99
+dateTransaction | 030421
+description | descripcion de la transaccion
+email | Correo electronico
+idBank | ID de la institucion bancaria
+idEntity | ID de la entidad 
+numericReference | Referencia numerica
+postalCode | Codigo postal
+referenceCreatedPayment | 811111112
+typeTransaction | Tipo de la transaccion
+
+
+
+
+
+
+
+# API EntitiesServices
+
+## getBalance
+
+```java
+
+```
+
+```php
+
+```
+
+> El codigo anterior devuelve un JSON estructurado así:
+
+```json
+
+```
+
+This endpoint retrieves all kittens.
+
+### HTTP Request
+
+`POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+user | Usuario
+mail | Correo electronico
+
+
+## getOperations
+
+Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
+
+
+```java
+
+```
+
+```php
+
+```
+
+> El codigo anterior devuelve un JSON estructurado así:
+
+```json
+
+```
+
+This endpoint retrieves all kittens.
+
+### HTTP Request
+
+`POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+user | Usuario
+mail | Correo electronico
+password | Clave asignada 
+
+
+
+
+
+# API CardServices
+
+## Iniciar sesion
+
+Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
+
+
+```java
+
+```
+
+```php
+
+```
+
+> El codigo anterior devuelve un JSON estructurado así:
+
+```json
+
+```
+
+This endpoint retrieves all kittens.
+
+### HTTP Request
+
+`POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+user | Usuario
+mail | Correo electronico
+password | Clave asignada 
 
