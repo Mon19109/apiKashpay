@@ -15,7 +15,7 @@ includes:
 
 search: true
 
-code_clipboard: true
+code_clipboard: false
 
 meta:
   - name: description
@@ -33,11 +33,12 @@ Para poder hacer uso de los siguientes servicios, es necesario llenar el siguien
 
 
 
-# Autenticacion
+# Autenticacion <span style="float: right; color:#0f70ec;font-size: 9px;">POST</span>
 
-Servicio para la generación de Token de seguridad
+Valida credenciales y genera tokenSesion para el consumo de los diferentes servicios.
 
 ```java
+// JAVA - Unirest
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma.com/AuthenticationService/authenticate")
   .header("Content-Type", "application/json")
@@ -46,6 +47,7 @@ HttpResponse<String> response = Unirest.post("http://sdbx-polaris.kashplataforma
 ```
 
 ```php
+//PHP - cURL
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -110,45 +112,6 @@ Recuerda — Las credenciales para este propósito se proporcionan a nivel de En
 
 
 # API Adquirencia
-## Agregar Entidad
-
-```java
-
-```
-
-```php
-{
-  "bussinesName": "Test blumon 12",
-  "bussinesNameShort": "SUC",
-  "contextFatherID": "com.sub.blumonpay",
-  "userRequest": {   
-    "email": "useremail@gmail.com",   
-    "telephoneNumber": "565311111",
-    "user": "72663-7266-8j71-76112" 
-  }
-}
-```
-
-> El codigo anterior devuelve un JSON estructurado así:
-
-```json
-
-```
-
-### HTTP Request
-
-`POST http://sdbx-sirio.kashplataforma.com/EntitiesServices/addEntity`
-
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-bussinesName | Nombre de la entidad
-bussinesNameShort | Nombre corto de la entidad
-contextFatherID | ID de la entidad
-email | Correo electronico 
-telephoneNumber | Telefono
-user | Usuario
 
 
 
@@ -156,12 +119,13 @@ user | Usuario
 
 # API Emision
 
-## Iniciar sesion
+## login
 
 Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
 
 
 ```java
+// JAVA - Unirest
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/registerOnboard ")
   .header("Authorization", "Basic YWRtaW46c2VjcmV0")
@@ -172,6 +136,7 @@ HttpResponse<String> response = Unirest.post("http://sdbx-aldebaran.kashplatafor
 ```
 
 ```php
+// PHP - cURL
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -316,12 +281,13 @@ versionConnector | Numero de version del conector
 
 
 # API OKPay
-## Crear orden
+## Crear orden <span style="float: right; color:#0f70ec;font-size: 9px;">POST</span>
 
 Este servicio ejecuta varios tipos de operaciones de Remesas. Transferir fondos (también conocido como SPEI), ingreso y retiro de efectivo, pago Swift, Mastercard y Visa.
 El envío de dinero nacional se realiza a través del operativo "1 - Transferencia Interbancaria SPEI", se puede visualizar en la pestaña Modelo.
 
 ```java
+// JAVA - Unirest
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataforma.com/OKPay/createOrder")
   .header("Authorization", "Basic YWRtaW46c2VjcmV0")
@@ -331,6 +297,7 @@ HttpResponse<String> response = Unirest.post("http://sdbx-centauri.kashplataform
 ```
 
 ```php
+// PHP - cURL
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -457,14 +424,24 @@ typeTransaction | Tipo de la transaccion
 
 # API EntitiesServices
 
-## getBalance
+## addEntity <span style="float: right; color:#0f70ec;font-size: 9px;">POST</span>
 
 ```java
-
+// JAVA - Unirest
 ```
 
 ```php
-
+// PHP - cURL
+{
+  "bussinesName": "Test blumon 12",
+  "bussinesNameShort": "SUC",
+  "contextFatherID": "com.sub.blumonpay",
+  "userRequest": {   
+    "email": "useremail@gmail.com",   
+    "telephoneNumber": "565311111",
+    "user": "72663-7266-8j71-76112" 
+  }
+}
 ```
 
 > El codigo anterior devuelve un JSON estructurado así:
@@ -473,31 +450,119 @@ typeTransaction | Tipo de la transaccion
 
 ```
 
-This endpoint retrieves all kittens.
-
 ### HTTP Request
 
-`POST http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
+`http://sdbx-sirio.kashplataforma.com/EntitiesServices/addEntity`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
+bussinesName | Nombre de la entidad
+bussinesNameShort | Nombre corto de la entidad
+contextFatherID | ID de la entidad
+email | Correo electronico 
+telephoneNumber | Telefono
 user | Usuario
-mail | Correo electronico
+
+
+## getBalance <span style="float: right; color:#029702;font-size: 9px;">GET</span>
+
+Servicio para obtener el saldo de la Entidad/Subentidad
+
+```java
+// JAVA - Unirest
+
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.get("http://sdbx-sirio.kashplataforma.com/EntitiesServices/getBalance")
+  .header("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvbnNpZ25hQGdtYWlsLmNvbSIsImV4cCI6MTc0MDY5NTQwMywiaWF0IjoxNzQwNjg5NDI3fQ.gnLouIsKyB2qs22IqU6juVsTLwZfRHX-CnSH_pUWPUrmLOZHFr83MLEbFJIB5-mu0oyBhcA1DYP7Yz0_-rwN_w")
+  .header("Entity-i", "com.onsigna")
+  .asString();
+
+```
+
+```php
+// PHP - cURL
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://sdbx-sirio.kashplataforma.com/EntitiesServices/getBalance',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer eeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvbnNpZ25hQGdtYWlsLmNvbSIsImV4cCI6MTc0MDY5NTQwMywiaWF0IjoxNzQwNjg5NDI3fQ.gnLouIsKyB2qs22IqU6juVsTLwZfRHX-CnSH_pUWPUrmLOZHFr83MLEbFJIB5-mu0oyBhcA1DYP7Yz0_-rwN_w',
+    "Entity-i: com.onsigna"
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+```
+
+> El codigo anterior devuelve un JSON estructurado así:
+
+```json
+{
+  "success": true,
+  "onsignaEntity": {
+    "id": "1159",
+    "name": "DAVID CARRIZOSA",
+    "prefix": "co",
+    "fiscalID": null,
+    "clabeAccount": "002028650641311465",
+    "virtualAccount": 650641311465,
+    "email": null,
+    "phoneNumber": null,
+    "fatherID": "com.tecreo",
+    "balance": 50,
+    "warrantyBalance": 0,
+    "customerNetworkBalance": 0,
+    "warrantyClabeAccount": null,
+    "warrantyVirtualAccount": null,
+    "cryptedCard": null,
+    "newCard": null,
+    "assignClabeAccount": true,
+    "feeID": 0,
+    "internalReference": null
+  }
+}
+
+```
+
+
+### HTTP Request
+
+`GET   -   http://sdbx-aldebaran.kashplataforma.com/aldbrn/internal/aw/login`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+Authorization | Default value : Bearer token
+Entity ( entidad Maestra) | Default value : com.example
+
 
 
 ## getOperations
 
-Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
+Servicio para obtener operaciones a nivel cuenta de la Entidad/Subentidad asociada a la entidad maestra 
 
 
 ```java
-
+// JAVA - Unirest
 ```
 
 ```php
-
+// PHP - cURL
 ```
 
 > El codigo anterior devuelve un JSON estructurado así:
@@ -516,27 +581,69 @@ This endpoint retrieves all kittens.
 
 Parameter | Description
 --------- | -----------
-user | Usuario
-mail | Correo electronico
-password | Clave asignada 
+Authorization | Default value : Bearer token
+IdEntity ( entidad previamente dada de alta) | Default value : com.example
+page (Numero de pagina a consultar) | Default value : 0
+size (Tamaño de registro que va tener cada pagina) | Default value : 25
+status (Estatus de operación, ver catalogo de estatus) | Default value : 25
+type (Tipo de operación, ver catalogo de operaciones) | Default value : 1
 
 
+### Catalogo de operaciones
+
+          |             |           | 
+--------- | ----------- | --------- | -----------
+1 | Envia SPEI | RETIRO | SPEI DE SALIDA
+1 | Envia SPEI | RETIRO | SPEI DE SALIDA
+2 | Operación devuelta o rechazada | DEPOSITO | DEVOLUCIÓN SPEI
+3 | SPEI recibido desde otra entidad | DEPOSITO | SPEI DE ENTRADA
+4 | En una cuenta a cuenta, es el retiro a la cuenta origen | RETIRO | RETIRO ENTRE CUENTAS
+10 | Compra de recargas telefonica | RETIRO | RECARGAS
+11 | Compra Pago Servicios | RETIRO | PAGO DE SERVICIOS
+12 | Retiro en ATM de la Red MasterCard | RETIRO | RETIRO EN ATM
+13 | Compra  tarjeta presente/No presente  de la Red Mastercard | RETIRO | CONSUMO CON TARJETA
+14 | Transacción por web service (Uso interno) | RETIRO/DEPOSITO | WebService (uso interno)
+15 | Transacción por archivo batch (Uso interno) | RETIRO/DEPOSITO | Batch (uso interno)
+16 | Retiro Corresponsal CITI (7Eleven, f.Gua, Citi, etc) | RETIRO | RETIRO EN CORRESPONSAL
+17 | Retiro Corresponsal de la RED  (Came, TeCreemos, Comercios Onsigna) | RETIRO | RETIRO EN MI RED KASH
+18 | Deposito Corresponsal de la  RED  (Came, TeCreemos, Comercios Onsigna) | DEPOSITO | DEPOSITO EN MI RED KASH
+19 | Crear referencia- retiro sucursal | RETIRO | ORDEN DE PAGO
+20 | Retiro de dinero con referencia en corresponsal  RED  (Came, TeCreemos, Comercios Onsigna) | RETIRO | RETIRO EN MI RED KASH
+21 | Retiro de dinero con referencia en corresponsal CITI (7Eleven, f.Gua, Citi, etc) | RETIRO | RETIRO EN CORRESPONSAL
+22 | Bolsas de Adquirencia | DEPOSITO | VENTA VISA
+23 | Bolsas de Adquirencia | DEPOSITO | Venta Amex
+24 | Bolsas de Adquirencia | DEPOSITO | Venta SPEI Referenciado
+25 | Bolsas de Adquirencia | DEPOSITO | Devolucion Adqui
+26 | Bolsas de Adquirencia | DEPOSITO | Cancelación Adqui
+27 | Bolsas de Adquirencia | DEPOSITO | Venta MC
+28 | Depósito a cuenta, dentro de la red de corresponsales CITI (7Eleven, f.Gua, Citi, etc) | DEPOSITO | DEPÓSITO EN CORRESPONSAL
+29 | Depósito a  cuenta dentro de la red de corresponsales de la  RED  (Came, TeCreemos, Comercios Onsigna) | DEPOSITO | DEPÓSITO ENTRE CUENTAS
+57 | Bolsas de Adquirencia | DEPOSITO | Venta Internacional
+104 | Deposito en Efectivo | DEPOSITO | DEPÓSITO EN EFECTIVO
+105 | Pago Referenciado | DEPOSITO | PAGO REFERENCIADO
+106 | Traspaso Referenciado | DEPOSITO | TRASPASO REFERENCIADO
+107 | Pago Recibido de Convenio | DEPOSITO | PAGO RECIBIDO
+108 | Transferencia entre cuentas Citi | DEPOSITO | TRANSFERENCIA ENTRE CUENTAS CITI
+109 | Deposito Mixto | DEPOSITO | DEPÓSITO MIXTO
+110 | Deposito cheques | DEPOSITO | DEPOSITO CHEQUE
+10007 | Liquidación Compra Individual |  | Liquidación Compra Individual
+10008 | Liquidación Compras |  |  LIQUIDACIÓN TOTAL
 
 
 
 # API CardServices
 
-## Iniciar sesion
+## Inicia
 
 Valida las credenciales para acceder en la app wallet, permite o deniega el acceso. Una vez que los accesos sean correctos, dicho servicio devuelve los saldos  asignados, así como el estatus, información y la tarjeta asociada a la cuenta. 
 
 
 ```java
-
+// JAVA - Unirest
 ```
 
 ```php
-
+// PHP - cURL
 ```
 
 > El codigo anterior devuelve un JSON estructurado así:
